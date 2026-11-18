@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "seed": 20251115,
+  "period": "2025-01-01/2025-12-31",
+  "disclaimer": "SYNTHETIC TEST DATA \u2014 invented suppliers, sites, quantities, prices and terms; not market evidence.",
+  "projects": 300,
+  "quotes": 1000,
+  "vendors": 50,
+  "evaluation_cases": 600,
+  "currency": "AUD",
+  "money_storage": "integer cents",
+  "public_source_values_imported": false,
+  "limitations": [
+    "No real supplier offers, market-calibrated rates or actual tender outcomes.",
+    "Distances are synthetic road proxies, not navigable truck routes.",
+    "One synthetic year cannot establish reliable pricing forecasts or weather effects.",
+    "Public source registry records candidate enrichments; no live feeds have been imported."
+  ]
+}

@@ -1,0 +1,13 @@
+.git
+.env
+.env.*
+var
+__pycache__
+**/__pycache__
+*.py[cod]
+.venv
+work
+*.log
+.DS_Store
+data/context/diesel.json
+data/context/soils.json

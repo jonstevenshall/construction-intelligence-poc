@@ -1,0 +1,129 @@
+{
+  "verified_on": "2026-11-18",
+  "status": "Weather snapshot bundled; other sources are optional candidates, not installed evidence",
+  "sources": [
+    {
+      "id": "OPENMETEO-ERA5",
+      "name": "Open-Meteo / Copernicus ERA5 historical weather",
+      "url": "https://open-meteo.com/en/docs/historical-weather-api",
+      "purpose": "Regional rain-day counts and adjustable wet-weather exposure scenarios",
+      "join": "suburb-centre coordinates \u2192 returned ERA5 grid; day, scenario start and as-of cutoff",
+      "storage": "10,960 daily values in 5 unique grids; 10 suburb mappings, 2020\u20132025",
+      "status": "Imported \u00b7 6 years \u00d7 5 grids, 10 regional locations",
+      "boundary": "Approximately 25 km gridded reanalysis, not a site gauge. Rainfall thresholds, recovery days and lost hours are explicit uncalibrated assumptions; actual lost workdays are not recorded. Attribution: Open-Meteo and Copernicus/ECMWF ERA5, CC BY 4.0."
+    },
+    {
+      "id": "CSIRO-ASRIS",
+      "name": "CSIRO / ACLEP ASRIS National Soil Grids",
+      "url": "https://soils.csiro.au/arcgis/rest/services/ASRIS/NationalSoilGrids/MapServer",
+      "purpose": "Regional soil order and mapped clay screening, 0\u201330 cm",
+      "join": "10 real suburb-centre point queries, layer IDs and depth interval",
+      "storage": "Optional adapter; no source observations are distributed with this release",
+      "status": "Not bundled in the public release; verify source-specific reuse terms before importing",
+      "boundary": "Not a geotechnical investigation at a fictional site. Map resolution and survey age are not established here. Does not establish rock, contamination, treatment cost or recovery time."
+    },
+    {
+      "id": "BOM-CDO",
+      "name": "Bureau of Meteorology Climate Data Online",
+      "url": "https://www.bom.gov.au/climate/data/",
+      "purpose": "Historical rainfall and temperature; multi-year seasonal baselines",
+      "join": "station coordinates, site distance, observation date, publication date",
+      "storage": "numeric time series, not embedded daily values",
+      "boundary": "Observed future work-period weather cannot be quote-time evidence. Rainfall does not itself establish a lost working day.",
+      "status": "Catalogued \u00b7 not imported"
+    },
+    {
+      "id": "GA-ELVIS",
+      "name": "Geoscience Australia ELVIS",
+      "url": "https://www.ga.gov.au/scientific-topics/national-location-information/elvis-elevation-information-system",
+      "purpose": "Terrain and slope screening",
+      "join": "site polygon, dataset footprint, capture date, resolution",
+      "storage": "external raster/object storage plus spatial metadata",
+      "boundary": "Does not establish designed cut/fill volume or replace a site survey.",
+      "status": "Catalogued \u00b7 not imported"
+    },
+    {
+      "id": "CSIRO-SLGA",
+      "name": "CSIRO Soil and Landscape Grid of Australia",
+      "url": "https://www.csiro.au/en/research/natural-environment/land/soil-and-landscape-grid-of-australia",
+      "purpose": "Regional soil attributes and screening context",
+      "join": "site coordinates, grid cell, model version, depth interval",
+      "storage": "spatial attributes plus linked metadata documents",
+      "boundary": "Modelled regional data is not a site-specific geotechnical investigation or proof of excavatable rock.",
+      "status": "Catalogued \u00b7 not imported"
+    },
+    {
+      "id": "QLD-SOILS",
+      "name": "Queensland soil mapping",
+      "url": "https://www.qld.gov.au/environment/land/management/soil/soil-data/mapping",
+      "purpose": "Soil maps and acid sulfate screening",
+      "join": "mapped coverage and publication/version date",
+      "storage": "spatial metadata and searchable source descriptions",
+      "boundary": "A screening flag prompts a question; it does not classify spoil or establish a treatment cost.",
+      "status": "Catalogued \u00b7 not imported"
+    },
+    {
+      "id": "AIP-DIESEL",
+      "name": "Australian Institute of Petroleum terminal gate prices",
+      "url": "https://aip.com.au/resources/historical-ulp-and-diesel-tgp-data/",
+      "purpose": "Historical diesel price context",
+      "join": "city/terminal, effective date, publication date",
+      "storage": "Optional adapter; no source observations are distributed with this release",
+      "boundary": "Inclusive-of-GST numeric observations with workbook cell references. Wholesale terminal averages are not delivered costs; fuel-only scenario requires a user-supplied litre allowance. Later snapshot is not proof of quote-time data vintage.",
+      "status": "Not bundled in the public release; verify source-specific reuse terms before importing"
+    },
+    {
+      "id": "QLD-WASTE",
+      "name": "Queensland waste levy rates",
+      "url": "https://www.qld.gov.au/environment/waste-reduction-recycling/disposal-levy/about/levy-rates",
+      "purpose": "Date-effective levy context for classified disposal scenarios",
+      "join": "effective financial year, waste classification, origin and destination zones",
+      "storage": "versioned structured rate table and supporting rules",
+      "boundary": "Levy is not the landfill gate fee; exemptions, material classification, destination acceptance and GST require confirmation. No rates imported.",
+      "status": "Catalogued \u00b7 not imported"
+    },
+    {
+      "id": "NHVR-NETWORK",
+      "name": "National Heavy Vehicle Regulator National Network Map",
+      "url": "https://www.nhvr.gov.au/road-access/route-planner/national-network-map",
+      "purpose": "Truck access and route restrictions",
+      "join": "route geometry, vehicle configuration, effective date",
+      "storage": "spatial route evidence",
+      "boundary": "Map access and routing integrations are not implemented; generated distances are explicitly simulated proxies.",
+      "status": "Catalogued \u00b7 not imported"
+    },
+    {
+      "id": "ABS-PPI",
+      "name": "ABS Producer Price Indexes",
+      "url": "https://www.abs.gov.au/statistics/economy/price-indexes-and-inflation/producer-price-indexes-australia/latest-release",
+      "purpose": "Broad construction price context",
+      "join": "appropriate series and geography, reference quarter, release date",
+      "storage": "numeric series with series ID and release vintage",
+      "boundary": "No single series is an exact earthworks inflation factor. Avoid double counting fuel and broad inflation adjustments.",
+      "status": "Catalogued \u00b7 not imported"
+    }
+  ],
+  "record_contract": [
+    "source_id",
+    "source_url",
+    "effective_from",
+    "effective_to",
+    "published_at",
+    "retrieved_at",
+    "location_coverage",
+    "units",
+    "licence",
+    "observed_or_modelled",
+    "confidence_or_resolution",
+    "transformation",
+    "supersedes"
+  ],
+  "calendar_features": {
+    "calendar_year_end": "31 December",
+    "australian_financial_year_end": "30 June",
+    "season": "southern hemisphere month mapping",
+    "supplier_shutdowns": "fictional vendor-specific dates, never assumed universal",
+    "public_holidays": "not imported"
+  },
+  "pricing_policy": "Context does not automatically become a price multiplier. Use it to retrieve comparable cases, surface questions or support an explicitly sourced scenario adjustment."
+}

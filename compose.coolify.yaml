@@ -1,0 +1,45 @@
+services:
+  db:
+    image: pgvector/pgvector:pg17
+    environment:
+      POSTGRES_DB: earthworks
+      POSTGRES_USER: earthworks
+      # Build-time interpolation can be empty; PostgreSQL requires this at runtime.
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-}
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U earthworks -d earthworks"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+    restart: unless-stopped
+  app:
+    build: .
+    environment:
+      DATABASE_URL: postgresql://earthworks:${POSTGRES_PASSWORD:-}@db:5432/earthworks
+      # Public simulation: anonymous chat, read-only stored evidence, $3 shared cap.
+      PUBLIC_DEMO: "true"
+      DEMO_ACCESS_TOKEN: ${DEMO_ACCESS_TOKEN:-}
+      LLM_ENABLED: ${LLM_ENABLED:-false}
+      OPENAI_MODEL: ${OPENAI_MODEL:-gpt-6-luna}
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      LLM_LIFETIME_BUDGET_USD: ${LLM_LIFETIME_BUDGET_USD:-3}
+      LLM_DAILY_BUDGET_USD: ${LLM_DAILY_BUDGET_USD:-1}
+    volumes:
+      - app-state:/app/var
+    expose:
+      - "8765"
+    depends_on:
+      db:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8765/health',timeout=3)"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 120s
+    restart: unless-stopped
+volumes:
+  postgres-data:
+  app-state:

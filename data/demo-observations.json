@@ -1,0 +1,155 @@
+{
+  "observations": [
+    {
+      "quote_id": "Q0001",
+      "contract_ex_gst_cents": 56347670,
+      "gst_cents": 5634767,
+      "optional_ex_gst_cents": 0,
+      "deposit_cents": 6208244,
+      "flags": []
+    },
+    {
+      "quote_id": "Q0002",
+      "contract_ex_gst_cents": 21127682,
+      "gst_cents": 2112768,
+      "optional_ex_gst_cents": 0,
+      "deposit_cents": 2324045,
+      "flags": []
+    },
+    {
+      "quote_id": "Q0003",
+      "contract_ex_gst_cents": 36989080,
+      "gst_cents": 3698908,
+      "optional_ex_gst_cents": 20203798,
+      "deposit_cents": 20343994,
+      "flags": [
+        {
+          "kind": "optional",
+          "scope_item_id": "EX01"
+        },
+        {
+          "kind": "optional",
+          "scope_item_id": "EX02"
+        },
+        {
+          "kind": "optional",
+          "scope_item_id": "EX03"
+        },
+        {
+          "kind": "optional",
+          "scope_item_id": "EX04"
+        },
+        {
+          "kind": "optional",
+          "scope_item_id": "EX05"
+        }
+      ]
+    },
+    {
+      "quote_id": "Q0004",
+      "contract_ex_gst_cents": 55445045,
+      "gst_cents": 5544505,
+      "optional_ex_gst_cents": 0,
+      "deposit_cents": 18296865,
+      "flags": [
+        {
+          "kind": "rate_only",
+          "scope_item_id": "EX03"
+        }
+      ]
+    },
+    {
+      "quote_id": "Q0005",
+      "contract_ex_gst_cents": 381475308,
+      "gst_cents": 38147531,
+      "optional_ex_gst_cents": 0,
+      "deposit_cents": 125886852,
+      "flags": []
+    },
+    {
+      "quote_id": "Q0006",
+      "contract_ex_gst_cents": 342734423,
+      "gst_cents": 34273442,
+      "optional_ex_gst_cents": 0,
+      "deposit_cents": 75401573,
+      "flags": [
+        {
+          "kind": "provisional",
+          "scope_item_id": "EX03"
+        },
+        {
+          "kind": "quantity_departure",
+          "scope_item_id": "EX03"
+        }
+      ]
+    },
+    {
+      "quote_id": "Q0007",
+      "contract_ex_gst_cents": 340695682,
+      "gst_cents": 34069568,
+      "optional_ex_gst_cents": 0,
+      "deposit_cents": 187382625,
+      "flags": [
+        {
+          "kind": "excluded",
+          "scope_item_id": "MB03"
+        }
+      ]
+    },
+    {
+      "quote_id": "Q0008",
+      "contract_ex_gst_cents": 270069394,
+      "gst_cents": 27006939,
+      "optional_ex_gst_cents": 0,
+      "deposit_cents": 59415267,
+      "flags": []
+    },
+    {
+      "quote_id": "Q0009",
+      "contract_ex_gst_cents": 328181225,
+      "gst_cents": 32818123,
+      "optional_ex_gst_cents": 0,
+      "deposit_cents": 36099935,
+      "flags": [
+        {
+          "kind": "quantity_departure",
+          "scope_item_id": "MB02"
+        }
+      ]
+    },
+    {
+      "quote_id": "Q0010",
+      "contract_ex_gst_cents": 336453484,
+      "gst_cents": 33645348,
+      "optional_ex_gst_cents": 0,
+      "deposit_cents": 37009883,
+      "flags": [
+        {
+          "kind": "wet_weather_excluded",
+          "scope_item_id": ""
+        }
+      ]
+    },
+    {
+      "quote_id": "Q0011",
+      "contract_ex_gst_cents": 205561831,
+      "gst_cents": 20556183,
+      "optional_ex_gst_cents": 0,
+      "deposit_cents": 67835404,
+      "flags": []
+    },
+    {
+      "quote_id": "Q0012",
+      "contract_ex_gst_cents": 216247767,
+      "gst_cents": 21624777,
+      "optional_ex_gst_cents": 0,
+      "deposit_cents": 118936272,
+      "flags": [
+        {
+          "kind": "unallocated_lump_sum",
+          "scope_item_id": ""
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "retrieved_at": "2026-11-15T12:45:18.968428+00:00",
+  "status": "Public release: attributed ERA5 weather snapshot; optional fuel and soil adapters have no bundled extracts",
+  "diesel_observations": 0,
+  "weather_grid_cells": 5,
+  "rainfall_daily_values": 10960,
+  "regional_soil_screenings": 0,
+  "source_ids": [
+    "OPENMETEO-ERA5"
+  ]
+}

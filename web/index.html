@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Earthworks Lab · Evidence before estimates</title><link rel="stylesheet" href="/style.css"><script src="/app.js" defer></script></head>
+<body>
+<header><div class="brand"><span class="brandmark">E/</span><span>Construction Intelligence Lab</span></div><div class="header-actions"><button id="about-poc" type="button" hidden>About this concept</button><span class="tag">Simulation</span></div></header>
+<main>
+  <section id="intro" class="intro-screen">
+    <p class="eyebrow">AN AI ESTIMATING AGENT CONCEPT</p>
+    <h1>Describe the job.<br>Explore what it might cost.</h1>
+    <p class="intro-lead">An experiment in helping anyone turn a rough construction brief into a clearer scope and an explained, indicative cost range.</p>
+    <div class="intro-explanation">
+      <article><h2>The problem</h2><p>You know what you want to achieve, but not every technical detail, hidden cost or local restriction. Getting a useful early budget can mean knowing which questions to ask first.</p></article>
+      <article><h2>The approach</h2><p>Describe the work in plain English. The agent clarifies what matters, searches for relevant local context and restrictions, and explores their cost implications. It explains assumptions, sources and what is still unpriced as the estimate develops.</p></article>
+    </div>
+    <div class="intro-actions"><button id="start-simulation" class="primary" type="button">Try the simulation ↗</button><a class="code-link" href="https://github.com/jonstevenshall/construction-intelligence-poc" target="_blank" rel="noopener noreferrer">View the source</a></div>
+    <p class="intro-note">Earthworks is the first example. The jobs, suppliers, bids and prices are synthetic: this demonstrates the concept, rather than real market pricing or contractor offers.</p>
+  </section>
+  <section id="access" hidden><p class="eyebrow">PRIVATE DEMO</p><h2>Unlock the workspace.</h2><p class="hint">Enter the <strong>DEMO_ACCESS_TOKEN</strong> configured for this app in Coolify. This is the demo’s access token, separate from the OpenAI API key.</p><form id="access-form"><label>Demo access token<input id="access-token" type="password" autocomplete="off" required></label><button id="unlock" class="primary" type="submit">Unlock demo</button></form><p id="access-error" role="alert" hidden></p></section>
+  <div id="workspace" hidden>
+  <details class="simulation-settings"><summary>Data & settings</summary><div id="status" class="status">Loading…</div><label>Evidence cutoff<input id="agent-asof" type="date" required></label></details>
+  <div id="saved-simulation" class="saved-simulation" hidden><span>A previous simulation is saved.</span><button id="resume-simulation" type="button">Resume previous simulation</button><button id="discard-simulation" type="button">Start fresh</button></div>
+  <nav aria-label="Workspace"><button class="tab active" data-panel="conversation" aria-pressed="true">Chat</button><button class="tab" data-panel="estimate" aria-pressed="false">Calculation</button><button class="tab" data-panel="review" aria-pressed="false">Bids</button><button class="tab" data-panel="context" aria-pressed="false">Context</button><button class="tab" data-panel="data" aria-pressed="false">Data</button></nav>
+  <div id="error" role="alert" hidden></div>
+  <section id="conversation" class="panel">
+    <div class="conversation-layout">
+      <div><h2>Tell me about the job.</h2>
+        <div id="agent-availability" class="notice"></div>
+        <div id="conversation-messages" aria-live="polite"></div>
+        <div id="conversation-error" role="alert" hidden></div>
+        <form id="conversation-form"><label for="job-message" class="sr-only">Your message</label><textarea id="job-message" rows="3" maxlength="3000" placeholder="Describe the work, or ask a question…" required></textarea><div class="conversation-actions"><button id="send-brief" class="primary" type="submit" disabled>Send ↗</button></div></form>
+        <div class="question-shortcuts"><button id="example-brief" type="button">Example</button><button id="reset-conversation" type="button">New project</button></div>
+      </div>
+      <aside class="conversation-evidence"><p class="eyebrow">WORKING ESTIMATE</p><div id="conversation-evidence"><div class="conversation-range">—</div><p class="hint">Input confidence · awaiting details</p></div></aside>
+    </div>
+  </section>
+  <section id="estimate" class="panel" hidden>
+    <h2>Calculation</h2>
+    <div id="calculation-results" aria-live="polite"><p class="hint">No calculations yet.</p></div>
+  </section>
+  <section id="review" class="panel" hidden>
+    <div class="review-head"><h2>Reference bids</h2><label>Reference job<select id="project"><option value="">Select a reference job…</option></select></label></div>
+    <div id="project-meta" class="meta"></div>
+    <div id="bids" class="bid-grid"><p class="hint">No bids retrieved yet.</p></div>
+  </section>
+  <section id="context" class="panel" hidden>
+    <h2>Project context</h2>
+    <div id="project-context" aria-live="polite"><p class="hint">Context will appear as you discuss the job.</p></div>
+  </section>
+  <section id="data" class="panel" hidden>
+    <div class="data-heading"><h2>Data model & sources</h2><button id="data-refresh" type="button">Refresh</button></div>
+    <div id="data-error" role="alert" hidden></div>
+    <div id="data-inventory"></div>
+    <p id="data-readonly" class="hint" hidden>You can preview a new dataset here. Saving it to the graph is available when running your own private instance.</p>
+    <details id="data-add"><summary>Add a dataset</summary>
+      <form id="data-import-form">
+        <label>Structured file<input id="data-file" type="file" accept=".csv,.json,.jsonl,.ndjson" required></label>
+        <p id="data-file-summary" class="hint">CSV, JSON array or JSONL · up to 2 MB / 1,000 records.</p>
+        <div id="data-upload-fields" hidden>
+          <div class="data-form-grid">
+            <label>Dataset name<input id="data-name" required maxlength="150"></label>
+            <label>Dataset ID<input id="data-id" required pattern="[A-Za-z0-9][A-Za-z0-9_.-]{0,79}" maxlength="80"></label>
+            <label>Record type<input id="data-type" required maxlength="150" placeholder="Describe what each record represents"></label>
+            <label>Evidence kind<select id="data-kind" required><option value="">Choose…</option><option value="public">Public source</option><option value="private">Private source</option><option value="synthetic">Synthetic test data</option></select></label>
+            <label>Version<input id="data-version" required maxlength="80"></label>
+            <label>Available to the agent from<input id="data-available" type="date" required></label>
+            <label class="data-wide">Objective<textarea id="data-objective" required rows="2" maxlength="800" placeholder="What question or decision should this evidence support?"></textarea></label>
+            <label class="data-wide">Source URL <span>optional; original file is retained</span><input id="data-source-url" type="url"></label>
+          </div>
+          <h3>Map fields</h3><div id="data-mapping" class="data-form-grid"></div>
+          <p class="hint">Link exact existing project, supplier or quote IDs, or namespaced external IDs. Names are never silently matched.</p>
+          <h3>Field meanings</h3><p class="hint">Explain units and coded values. Anything left undefined remains unknown to the agent.</p><div id="data-dictionary"></div>
+          <button id="data-preview-button" type="submit">Preview import</button>
+        </div>
+      </form>
+      <div id="data-preview" hidden></div>
+      <button id="data-commit" class="primary" type="button" disabled hidden>Import into graph</button>
+      <p id="data-import-result" role="status"></p>
+    </details>
+    <section class="data-graph-section"><h3>Explore graph links</h3><form id="data-graph-form" class="chat-form"><input id="data-graph-entity" aria-label="Entity ID" placeholder="Enter an entity ID or select a dataset’s graph" required><button type="submit">Inspect links</button></form><div id="data-graph"></div></section>
+  </section>
+  </div>
+  <p class="data-attribution">Synthetic construction data. Historical rainfall via <a href="https://open-meteo.com/" target="_blank" rel="noopener noreferrer">Open-Meteo</a> / Copernicus ERA5, <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">CC BY 4.0</a>.</p>
+</main>
+<dialog id="document"><div class="dialog-head"><h2 id="document-title">Source bid</h2><button id="close-document">Close</button></div><pre id="document-text"></pre></dialog>
+<dialog id="calculation"><div class="dialog-head"><h2 id="calculation-title">Calculation evidence</h2><button id="close-calculation">Close calculation</button></div><div id="calculation-content"></div></dialog>
+<dialog id="data-detail"><div class="dialog-head"><h2 id="data-detail-title">Data details</h2><button id="close-data-detail">Close</button></div><div id="data-detail-content"></div></dialog>
+</body></html>

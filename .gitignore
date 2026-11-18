@@ -1,0 +1,11 @@
+.env
+.env.*
+!.env.example
+var/
+__pycache__/
+*.py[cod]
+.venv/
+.DS_Store
+*.log
+data/context/diesel.json
+data/context/soils.json

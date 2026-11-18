@@ -1,0 +1,9 @@
+{
+  "id": "site-access-demo",
+  "version": "2025-01-01",
+  "name": "Fictional site-access notes",
+  "description": "A small additional evidence source for synthetic projects P001 and P002. These invented constraints apply only to those fictional projects, never to a real site or suburb.",
+  "data_kind": "synthetic",
+  "available_date": "2025-01-01",
+  "records_file": "records.jsonl"
+}
