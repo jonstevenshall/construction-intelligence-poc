@@ -61,8 +61,8 @@ Read [architecture](docs/ARCHITECTURE.md), [evidence and scale](docs/EVIDENCE_PL
 
 ## Source availability and commercial licensing
 
-Required Notice: Copyright 2026 Jon Hall (https://github.com/jonstevenshall)
+Required Notice: Copyright 2026 Jon Stevens-Hall (https://github.com/jonstevenshall)
 
-The application code and generated construction corpus are **source-available under the [PolyForm Noncommercial License 1.0.0](LICENSE)**. Noncommercial use is permitted subject to its terms. Commercial use requires a separate agreement; commercial licensing or acquisition enquiries can be directed to [Jon Hall](https://github.com/jonstevenshall).
+The application code and generated construction corpus are **source-available under the [PolyForm Noncommercial License 1.0.0](LICENSE)**. Noncommercial use is permitted subject to its terms. Commercial use requires a separate agreement; commercial licensing or acquisition enquiries can be directed to [Jon Stevens-Hall](https://github.com/jonstevenshall).
 
 This is not a permissive open-source release. The licence governs reuse of the work; it does not reserve the underlying idea. Third-party data retains its own terms, recorded in [NOTICE](NOTICE).
