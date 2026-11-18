@@ -6,7 +6,6 @@ import json
 import os
 import re
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
-from threading import BoundedSemaphore
 from urllib.parse import parse_qs, urlparse
 
 from .agent import ReviewAgent
@@ -41,7 +40,6 @@ def main():
         print(json.dumps(store.datasets.import_directory(directory.parent)),flush=True)
     agent=ReviewAgent(store)
     budget=Budget.public_demo() if public_demo else Budget()
-    paid_turn=BoundedSemaphore(1)
     conversation=ConversationAgent(agent,budget)
     workbench=DataWorkbench(store)
     manifest=json.loads((ROOT/"data"/"manifest.json").read_text())
@@ -154,10 +152,6 @@ def main():
                 return self.send(401,{"error":"Access token required"})
             if public_demo and self.path=="/api/data/import":
                 return self.send(403,{"error":"Stored datasets are read-only in the public demo. Run a private instance to import evidence.","code":"READ_ONLY_DEMO"})
-            uses_model=self.path in ["/api/converse","/api/chat"]
-            acquired=paid_turn.acquire(blocking=False) if uses_model else False
-            if uses_model and not acquired:
-                return self.send(429,{"error":"Another conversation is running; please try again shortly.","code":"DEMO_BUSY"})
             try:
                 size=int(self.headers.get("Content-Length","0"))
                 limit=4300000 if self.path in ["/api/data/inspect","/api/data/preview","/api/data/import"] else 60000
@@ -200,8 +194,6 @@ def main():
             except Exception:
                 # Do not expose credentials, provider payloads or connection details.
                 return self.send(502,{"error":"Request failed. No automatic retry was attempted. Check the local service logs."})
-            finally:
-                if acquired:paid_turn.release()
 
         def log_message(self,format,*values):
             # Request paths only; no tokens, chat content or provider responses.

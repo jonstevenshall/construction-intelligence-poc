@@ -64,4 +64,4 @@ A billion quotes would imply many billions of line items and chunks. A single un
 
 ## Public release controls
 
-Public mode removes the visitor token gate, enforces a dedicated persistent US$3 shared model ledger and serialises model turns. Stored datasets are read-only; preview is allowed, commit is rejected. Private-kind datasets are filtered from catalogue, search, definitions, records, originals and graph paths. The intro frames the general construction-agent concept; earthworks is the initial synthetic example.
+Public mode removes the visitor token gate, enforces a dedicated persistent US$3 shared model ledger and allows concurrent model turns against the same atomic spend cap. Stored datasets are read-only; preview is allowed, commit is rejected. Private-kind datasets are filtered from catalogue, search, definitions, records, originals and graph paths. The intro frames the general construction-agent concept; earthworks is the initial synthetic example.

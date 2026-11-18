@@ -446,7 +446,7 @@ async function converse(event) {
     $("job-message").value = draft;
     if (error.status !== 401) {
       if (error.code === "DEMO_SPEND_LIMIT") { modelReady=false; $("agent-availability").textContent="The shared live-chat allowance has been used. You can still explore the bids, evidence and data model."; }
-      const messages = {DEMO_SPEND_LIMIT:"The demo’s usage allowance has been reached. Your project and draft are saved.",DEMO_BUSY:"Someone else is trying the shared demo. Your draft is saved; please try again shortly.",PROVIDER_RATE_LIMIT:"The AI service is temporarily rate-limited. Your project and draft are saved; please try again shortly.",MODEL_UNAVAILABLE:"Chat is currently unavailable. Your project and draft are saved. The server’s model settings need checking."};
+      const messages = {DEMO_SPEND_LIMIT:"The demo’s usage allowance has been reached. Your project and draft are saved.",PROVIDER_RATE_LIMIT:"The AI service is temporarily rate-limited. Your project and draft are saved; please try again shortly.",MODEL_UNAVAILABLE:"Chat is currently unavailable. Your project and draft are saved. The server’s model settings need checking."};
       $("conversation-error").textContent = messages[error.code] || "I couldn’t complete that reply. Your project is saved and your draft has been restored. Please try again."; $("conversation-error").hidden = false;
     }
   }

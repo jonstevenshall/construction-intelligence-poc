@@ -93,11 +93,11 @@ app.main()
         status,data=self.request("/api/data/import",{})
         self.assertEqual(status,403);self.assertEqual(data["code"],"READ_ONLY_DEMO")
 
-    def test_only_one_shared_model_turn_runs_at_a_time(self):
+    def test_multiple_visitors_can_use_the_demo_without_a_single_user_gate(self):
         with concurrent.futures.ThreadPoolExecutor(max_workers=2) as pool:
             responses=list(pool.map(lambda _:self.request("/api/converse",{"message":"test"}),range(2)))
-        self.assertEqual(sorted(status for status,_ in responses),[200,429])
-        self.assertEqual(next(data for status,data in responses if status==429)["code"],"DEMO_BUSY")
+        self.assertEqual([status for status,_ in responses],[200,200])
+        self.assertTrue(all(data["fixture"] for _,data in responses))
 
     def test_cross_origin_post_is_rejected(self):
         self.assertEqual(self.request("/api/converse",{},headers={"Origin":"https://example.test"})[0],403)
